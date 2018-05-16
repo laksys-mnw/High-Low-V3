@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <style>
+
+  </style>
+</head>
+<body style="background-color:rgb(240, 240, 240);" >
+<br>
+       <div class="container" style="background:white;height:120px;width:1200px;">
+          <nav class=" navbar container" ><br>
+           <div>
+                
+             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+                   <label for="account"><h4>Ether Balance:</h4><input type="text" class="form-control" id="balance" value={{balance}} readonly/></label>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                   <i class="fa fa-bitcoin" style="font-size:36px"></i>
+                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+                   <label for="account1"><h4>Token Balance:</h4><input type="text" class="form-control" id="usertoken"  readonly/></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#purchase" style="padding: 8px 30px" class="button1 zoom"  >Purchase Token</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+                   <Button type="button"  value="Create Bet" data-toggle="modal" data-target="#selltoken" style="padding: 8px 20px"class="button1 zoom" >Convert Token to Ether</Button>
+         </div>   
+</nav>
+</div>
+<!--purchase popup--> 
+<div class="modal fade" id="purchase" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Purchase Tokens</h4>         
+        </div>
+        
+        <div class="modal-body">
+            <input type="text" placeholder="number only" id='num'>
+        </div>
+       
+        <div class="modal-footer">
+          <button type="button"class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="wcs.getToken()" style="background:#03A9F4" >Purchase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!--sell token popup--> 
+   <div class="modal fade" id="selltoken" role="dialog">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Exchange Token</h4>         
+          </div>
+          
+          <div class="modal-body">
+              <input type="text" placeholder="number only" id='selltk'>
+          </div>
+         
+          <div class="modal-footer">
+            <button type="button" class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="wcs.exchange_token()" style="background:#03A9F4" >Exchange</button>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+<br>  
+<!--unbeted table-->
+<div class="container" style="height:400px;width:1230px;">
+    <table class="table" style="background:white;overflow-y:scroll;display:block;" >
+     <thead>
+       <tr style="background:white">
+         <th>Bet Id</th>
+         <th>Details</th>
+         <th>Team</th>
+         <th>Start Time/Date</th>
+         <th>End Time/Date</th>
+         <th>Win</th>
+         <th>Loss</th>
+         <th> </th>
+         <th> </th>
+         <th> </th>
+       </tr>
+     </thead>
+     <tbody id="user_table">
+         <tr>
+           </tr>
+     </tbody>
+   </table>
+ </div>
+<br>
+<!--Betted table-->
+<div class="container" style="height:400px;width:1230px;">
+    <table class="table" style="background:white;overflow-y:scroll;display:block;" >
+     <thead>
+       <tr style="background:white">
+         <th>Bet Id</th>
+         <th>Details</th>
+         <th>Team</th>
+         <th>Start Time/Date</th>
+         <th>End Time/Date</th>
+         <th>Win</th>
+         <th>Loss </th>
+         <th> </th>
+         <th> </th>
+         <th> </th>
+       </tr>
+     </thead>
+     <tbody id="totalbroker_list">
+         <tr>
+       
+       </tr>
+     </tbody>
+   </table>
+ </div>
+ <br>
+</body>
+</html>
