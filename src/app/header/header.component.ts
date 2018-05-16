@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Web3codeService } from '../services/web3code.service';
-import { ContractService } from '../services/contract-service.service';
 
 
 
@@ -16,10 +15,7 @@ export class HeaderComponent implements OnInit {
 
   
   constructor(
-    private wcs:Web3codeService,
-    private cs:ContractService,
-    )
-     {
+    private wcs:Web3codeService)  {
       wcs.getAccount().then(account => this.account = account); 
       wcs.getUserBalance().then(balance => this.balance = balance);
      }

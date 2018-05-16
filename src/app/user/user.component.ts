@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Web3codeService } from '../services/web3code.service';
-import { ContractService } from '../services/contract-service.service';
+// import { ContractService } from '../services/contract-service.service';
 import $ from "jquery";
 
 @Component({

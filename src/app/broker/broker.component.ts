@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Web3codeService } from '../services/web3code.service';
-import { ContractService } from '../services/contract-service.service';
 import $ from "jquery";
 
 @Component({
@@ -22,7 +21,25 @@ export class BrokerComponent implements OnInit {
       // wcs.stake().then(ether => this.ether = ether); 
       // wcs.stake().then(token => this.token = token);   
      }
-  
+  cb()
+  {
+  let name :string = $('#a').val();
+  let price = $('#b').val();
+  let time =1626369026;
+  this.wcs.creat_bt(name,price,time);
+  }
+ gt()
+ {
+  var n:any = $('#num').val();
+     var not = n/1000;
+  this.wcs.getToken(not);
+ }
+ et()
+ {
+  var n:any = $('#num').val();
+  var not = n/1000;
+  this.wcs.exchange_token(not);
+ }
   ngOnInit() {
     this.wcs.stake();
     this.wcs.Token();

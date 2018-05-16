@@ -48,30 +48,31 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
     }
 
   
-  public async getAccount(): Promise<string> {
-    if (this.account == null) {
-      this.account = await new Promise((resolve, reject) => {
-        this._web3.eth.getAccounts((err, accs) => {
-          if (err != null) {
-            alert('There was an error fetching your accounts.');
-            return;
-          }
-  
-          if (accs.length === 0) {
-            alert(
-              'Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.'
-            );
-            return;
-          }
-          console.log(accs[0]);
-
-          resolve(accs[0]);
-        })
-      }) as string;
-     }
-  
-    return Promise.resolve(this.account);
-  }
+    public async getAccount(): Promise<string> {
+      if (this.account == null) {
+        this.account = await new Promise((resolve, reject) => {
+          this._web3.eth.getAccounts((err, accs) => {
+            if (err != null) {
+              alert('There was an error fetching your accounts.');
+              return;
+            }
+            console.log(accs);
+            
+            if (accs.length === 0) {
+              alert(
+                'Couldn\'t get any accounts! Make sure your Ethereum client is configured correctly.'
+              );
+              return;
+            }
+            resolve(accs[0]);
+          })
+        }) as string;
+    
+        this._web3.eth.defaultAccount = this.account;
+      }
+    
+      return Promise.resolve(this.account);
+    }
    
 
   public async getUserBalance(): Promise<number> {
@@ -93,9 +94,9 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
     let account = await this.getAccount();
   
     return new Promise((resolve, reject) => {
-      let _web3 = this._web3;
-      this._tokenContract.broker_map(account, function (err, result) {
-        alert("Staked_ether"+result[0]);
+      
+      this._tokenContract.broker_map.call(account, function (err, result) {
+        // alert("Staked_ether"+result[0]);
         resolve(result);
 
       });
@@ -108,11 +109,11 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
   
     return new Promise((resolve, reject) => {
       let _web3 = this._web3;
-      this._tokenContract.broker_map(account, function (err, result) {
+      this._tokenContract.broker_map.call(account, function (err, result) {
         if(err != null) {
           reject(err);
         }
-        alert("Staked_Token"+result[1]);
+        // alert("Staked_Token"+result[1]);
 
         resolve(result);
       });
@@ -121,7 +122,9 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
   
   public async check_bro(): Promise<number> {
     // var count=0;
-  let account = await this.getAccount();
+    let account:string = '';
+      await this.getAccount().then(address => this.account = address);
+       console.log(account);
   return new Promise((resolve, reject) => {
   this._tokenContract.broker_map(account,{from:account,gas: 600000},function(err,result) {    //check broker
   if(result) {
@@ -129,10 +132,14 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
     if(result[2]=="true")
     {
       console.log("Existing Broker..."); 
+      console.log(typeof(account));
+      
       }
     else
     {
         console.log("Not a Existing Broker..."); 
+        console.log(typeof(account));
+
     }
   } 
   else {
@@ -143,12 +150,13 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
   }
   
 
-  public async getToken(): Promise<number> {
-         var n:any = $('#num').val();
-         var not = n/1000;
-    let account = await this.getAccount();
+  public async getToken(not): Promise<number> {
+         let account:string = '';
+        await this.getAccount().then(address => this.account = address);
+        console.log(account);
+            
     return new Promise((resolve, reject) => {
-     this._tokenContract.token_transaction.sendTransaction(0,{from:account,value:this._web3.toWei(not,'ether'),gas: 600000},function(err,result) //purchase token
+     this._tokenContract.token_transaction(0,{from:account,value:this._web3.toWei(not,'ether'),gas: 600000},function(err,result) //purchase token
      {
        if(result) {
          console.log(result);
@@ -161,10 +169,11 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
    }) as Promise<number>;
  }
 
- public async exchange_token(): Promise<number> {
-  var n:any = $('#num').val();
-  var not = n/1000;
-let account = await this.getAccount();
+ public async exchange_token(not): Promise<number> {
+  let account:string = '';
+        await this.getAccount().then(address => this.account = address);
+        console.log(account);
+            
 return new Promise((resolve, reject) => {
 this._tokenContract.token_transaction(this._web3.toWei(not,'ether'),{from:account,value:0,gas: 600000},function(err,result) //exchange token 
 {
@@ -180,22 +189,32 @@ else {
 }
 
   
-public async creat_bt(): Promise<number> {
-  let name :string = $('#a').val();
-  let price = $('#b').val();
-  let time =1626369026;
-  let account = await this.getAccount();
+public async creat_bt(name,price,time): Promise<number> {
+  let meta = this;
+  let account:string = '';
+  await this.getAccount().then(address => this.account = address);
+  console.log(account);
   return new Promise((resolve,reject) => {
-    this._tokenContract.broker_set_game(name,price,time,{from:account,gas: 600000},function (err, result) {
-      alert(result);
-      resolve(result);
+   return meta._tokenContract.broker_set_game(name,price,time,{from:account,gas: 600000},function (err,result) {
+    if(err)
+     {
+     
+      reject(err);
+    }
+    alert(result);
+    console.log("game received");
+     resolve(result);
+     meta.bet_list();
     });
   }) as Promise<number>;
+ 
 }
 
 public async bet_list(): Promise<number> {
-   let account = await this.getAccount();
    let meta = this;
+   let account:string = '';
+  await this.getAccount().then(address => this.account = address);
+  console.log(account);
   return new Promise((resolve,reject) => {
 
           return meta._tokenContract.game_id(function (error,result) {
@@ -203,21 +222,29 @@ public async bet_list(): Promise<number> {
           console.log("hello")
           for(var a=0;a<result.toNumber();a++) 
           {
-            alert("Worksssssss"+a);
-          return meta._tokenContract.game_set_map(a,function (error,result) {
-            if(result)
-            {          
-              if(account==result[3])
+            alert("Worksssssss "+a);
+           meta._tokenContract.game_set_map(a,function (err,res:string[]) {
+            if(err)
+            {    
+              reject(err); 
+            }
+            else
+            {     
+              if(account===res[3])
               {
                 alert("True");
-                $("#broker_list").append('<tr><td rowspan="1">'+result[0]+'</td><td>'+result[1]+"/"+result[2]+'</td><td>'+result[1]+'</td><td>'+new Date(result[4].toNumber()*1000).toLocaleString()+'</td><td>'+new Date(result[5].toNumber()*1000).toLocaleString()+'</td><td style="color:green">'+result[3]+" &#9650;"+'</td><td style="color:red">'+result[4]+"&#9660;"+'</td><td> <button type="button"  style="padding: 3px 50px;"  onclick="App.declare_bet('+result[0]+');" data-toggle="modal" data-target="#myModal2">Declare Bet</button></td></tr>');
-              }
+                $("#broker_list").append('<tr><td rowspan="1">'+res[0]+'</td><td>'+res[1]+"/"+res[2]+'</td><td>'+res[1]+'</td><td>'+new Date(result[4].toNumber()*1000).toLocaleString()+'</td><td>'+new Date(result[5].toNumber()*1000).toLocaleString()+'</td><td style="color:green">'+res[3]+" &#9650;"+'</td><td style="color:red">'+res[4]+"&#9660;"+'</td><td> <button type="button"  style="padding: 3px 50px;"  onclick="App.declare_bet('+result[0]+');" data-toggle="modal" data-target="#myModal2">Declare Bet</button></td></tr>');
+              }              
               else
-              {
+               {
+                
+                 console.log(typeof(res[3]),res[3]);
+                 $("#broker_list").append('<tr><td rowspan="1">'+res[0]+'</td><td>'+res[1]+"/"+res[2]+'</td><tr>');
                 alert("False")
               }
-              
-              }
+            
+          }
+        
             })
           }
   
