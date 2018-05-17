@@ -67,15 +67,13 @@
      <thead >
        <tr style="background:white">
          <th>Bet Id</th>
-         <th>Details</th>
-         <th>Team</th>
-         <th>Start Time/Date</th>
-         <th>End Time/Date</th>
-         <th>Win</th>
-         <th>Loss</th>
-         <th> </th>
-         <th> </th>
-         <th> </th>
+         <th>Stock Name</th>
+         <th>Strike Price</th>
+         <th>Expiry Time</th>
+         <th>No.of.Bets</th>
+         <th>Ether Collected</th>
+         <th>Tokens Collected</th> 
+         <th>Bet Status</th>  
        </tr>
      </thead>
      <tbody id="broker_list">
@@ -114,7 +112,7 @@
                         </table>
              </div>
           <div class="modal-footer">
-            <button type="button" data-dismiss="modal" aria-hidden="true"  class=" zoom" (click)="wcs.creat_bt()">Create Bet</button>
+            <button type="button" data-dismiss="modal" aria-hidden="true"  class=" zoom" (click)="cb()">Create Bet</button>
             <button type="button" style="background-color:hsl(0, 80%, 50%)" class="cancelbtn zoom" data-dismiss="modal">Close</button>
         
            </div>

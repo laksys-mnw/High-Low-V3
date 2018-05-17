@@ -5,7 +5,7 @@ import $ from "jquery";
 @Component({
   selector: 'app-user',
   templateUrl: './broker.component.html',
-  styleUrls: ['./broker.component.scss']
+   styleUrls: ['./broker.component.scss']
 })
 export class BrokerComponent implements OnInit {
   public account:string;
@@ -16,10 +16,8 @@ export class BrokerComponent implements OnInit {
   
    constructor(private wcs:Web3codeService)
      {
-      // wcs.getAccount().then(account => this.account = account);
-      // wcs.getUserBalance().then(balance => this.balance = balance);      
-      // wcs.stake().then(ether => this.ether = ether); 
-      // wcs.stake().then(token => this.token = token);   
+      wcs.getAccount().then(account => this.account = account);
+      wcs.getAccount().then(account => wcs.particular_brokers_bet_list(account));
      }
   cb()
   {
@@ -40,10 +38,9 @@ export class BrokerComponent implements OnInit {
   var not = n/1000;
   this.wcs.exchange_token(not);
  }
-  ngOnInit() {
-    this.wcs.stake();
-    this.wcs.Token();
-  
+  ngOnInit() 
+  {
+        
   }
 
 }

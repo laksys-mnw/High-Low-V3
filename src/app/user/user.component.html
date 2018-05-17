@@ -33,6 +33,31 @@
          </div>   
 </nav>
 </div>
+<!--BET POPUP-->
+<div class="modal fade" id="betting" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-header" style="background: #1affff">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" >Bet</h4>         
+      </div>
+      
+      <div class="modal-body" >
+        <p>Bet by,</p><br>
+          <input type="radio" name="option" value="0"> Token<br>
+<input type="radio" name="option" value="1"> Ether<br><br>
+          <input type="text" class="shadow" placeholder="no.of.token or ether" id='bet_input'>
+      </div>
+     
+      <div class="modal-footer" >
+        <button type="button" class="success" data-dismiss="modal" aria-hidden="true" (click)="bt()"  >Bet</button>
+        <button type="button" class="danger"  data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!--purchase popup--> 
 <div class="modal fade" id="purchase" role="dialog">
     <div class="modal-dialog modal-sm">
@@ -48,7 +73,7 @@
         </div>
        
         <div class="modal-footer">
-          <button type="button"class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="wcs.getToken()" style="background:#03A9F4" >Purchase</button>
+          <button type="button"class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="gt()" style="background:#03A9F4" >Purchase</button>
         </div>
       </div>
     </div>
@@ -69,7 +94,7 @@
           </div>
          
           <div class="modal-footer">
-            <button type="button" class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="wcs.exchange_token()" style="background:#03A9F4" >Exchange</button>
+            <button type="button" class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="et()" style="background:#03A9F4" >Exchange</button>
           
           </div>
         </div>
@@ -93,7 +118,7 @@
          <th> </th>
        </tr>
      </thead>
-     <tbody id="user_table">
+     <tbody id="user_bet_list">
          <tr>
            </tr>
      </tbody>
@@ -105,19 +130,20 @@
     <table class="table" style="background:white;overflow-y:scroll;display:block;" >
      <thead>
        <tr style="background:white">
-         <th>Bet Id</th>
-         <th>Details</th>
-         <th>Team</th>
-         <th>Start Time/Date</th>
-         <th>End Time/Date</th>
-         <th>Win</th>
-         <th>Loss </th>
+        <th>Bet Id</th>
+        <th>Stock Name</th>
+        <th>Strike Price</th>
+        <th>Expiry Time</th>
+        <th>No.of.Bets</th>
+        <th>Ether Collected</th>
+        <th>Tokens Collected</th> 
+        <th>Bet Status</th>  
          <th> </th>
          <th> </th>
          <th> </th>
        </tr>
      </thead>
-     <tbody id="totalbroker_list">
+     <tbody id="total_bet_list">
          <tr>
        
        </tr>
