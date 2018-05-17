@@ -121,7 +121,7 @@ public _tokenContractAddress: string = "0xff0c10e856284ee57e045bc3380f21ed80b6a5
   }
   
   public async check_bro(): Promise<number> {
-    // var count=0;
+    var count=0;
     let account:string = '';
       await this.getAccount().then(address => this.account = address);
        console.log(account);
