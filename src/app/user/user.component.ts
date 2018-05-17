@@ -32,12 +32,12 @@ export class UserComponent implements OnInit {
       var n:any = $('#num').val();
       var not = n/1000;
       this.wcs.exchange_token(not);
-    } 
+    }     
     bt(a)
     {
-      alert();
-      var opt:any = $('#option').val();
-      var amt:any = $('#bet_input').val();
+      alert(a);
+      var opt:any = parseInt($( "#myselect" ).val());
+      var amt:any = parseInt($('#bet_input').val());
 
       console.log(opt,amt);
       

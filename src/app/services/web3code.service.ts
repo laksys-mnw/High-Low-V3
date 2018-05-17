@@ -341,7 +341,7 @@ public async all_bet_list(): Promise<number> {
                         console.log(resul[4].toNumber());                             
                        for(var index=0;index<resu.toNumber();index++)
                         {
-                          alert("abcde");
+                          // alert("abcde");
                         meta._tokenContract.get_game_set_map_value.call(a,index,function (er,res) 
                          {
                            meta._tokenContract.betting_map.call(res,a,function (e,re) 
@@ -355,7 +355,7 @@ public async all_bet_list(): Promise<number> {
                               {
                                 // if(resul[2].toNumber()>1626562777)
                                 {
-                                $("#total_bet_list").append('<tr><td rowspan="1">'+a+'</td><td>'+resul[0]+'</td><td>'+resul[1].toNumber()+'</td><td>'+resul[2].toNumber()+'</td><td>'+resu+'</td><td>'+tot_ether+'</td><td>'+tot_tokens+'</td><td><button type="button" class="button" value="Create Bet" data-toggle="modal" data-target="#betting" (onclick)=bt(a)>Bet</td></tr>');
+                                $("#total_bet_list").append('<tr><td rowspan="1">'+a+'</td><td>'+resul[0]+'</td><td>'+resul[1].toNumber()+'</td><td>'+resul[2].toNumber()+'</td><td>'+resu+'</td><td>'+tot_ether+'</td><td>'+tot_tokens+'</td><td><button type="button" class="button" value="Create Bet" data-toggle="modal" data-target="#betting" (onclick)=bt('+a+')>Bet</td></tr>');
                                 }
                             } 
                             else if(resul[4].toNumber()==10)//low
