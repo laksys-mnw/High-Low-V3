@@ -115,7 +115,96 @@ public _tokenContractAddress: string = "0xc18cb67daef73e39d7436a90a8a42e775f76a8
   }) as Promise<number>;
   }
 
+  public async increase_ether(bid,choice,amt): Promise<number> {                               //increase betted ETher
+    // var count=0;
+    let account:string = '';
+      await this.getAccount().then(address => this.account = address);     
+  return new Promise((resolve, reject) => {
+  this._tokenContract.increase(bid,choice,0,{from:account,value:this._web3.toWei(amt,'ether'),gas: 600000},function(err,result) 
+  {  
+  if(result) {
+    
+  } 
+  else
+   {
+    reject(err);
+  }
+  });
+  }) as Promise<number>;
+  }
+
+  public async increase_token(bid,choice,amt): Promise<number> {                               //increase betted token
+    let account:string = '';
+      await this.getAccount().then(address => this.account = address);  
+  return new Promise((resolve, reject) => {
+  this._tokenContract.increase(bid,choice,this._web3.toWei(amt,'ether'),{from:account,value:0,gas: 600000},function(err,result) 
+  {  
+  if(result) {
+    
+  } 
+  else
+   {
+    reject(err);
+  }
+  });
+  }) as Promise<number>;
+  }
+    
+
+  public async decrease_ether(bid,choice,amt): Promise<number> {                               //decrease betted ETher
+    // var count=0;
+    let account:string = '';
+      await this.getAccount().then(address => this.account = address);     
+  return new Promise((resolve, reject) => {
+  this._tokenContract.decrease(bid,choice,this._web3.toWei(amt,'ether'),{from:account,value:0,gas: 600000},function(err,result) 
+  {  
+  if(result) {
+    
+  } 
+  else
+   {
+    reject(err);
+  }
+  });
+  }) as Promise<number>;
+  }
+
+  public async decrease_token(bid,choice,amt): Promise<number> {                               //decrease betted token
+    let account:string = '';
+      await this.getAccount().then(address => this.account = address);  
+  return new Promise((resolve, reject) => {
+  this._tokenContract.decrease(bid,choice,this._web3.toWei(amt,'ether'),{from:account,value:0,gas: 600000},function(err,result) 
+  {  
+  if(result) {
+    
+  } 
+  else
+   {
+    reject(err);
+  }
+  });
+  }) as Promise<number>;
+  }
+    
   
+  public async cancel_bet(bid): Promise<number> {                                                 //Cancelling the bet
+    let account:string = '';
+    await this.getAccount().then(address => this.account = address);  
+  return new Promise((resolve, reject) => {
+  this._tokenContract.trader_cancel_bet_and_widthdraw(bid,{from:account,gas: 600000},function(err,result) 
+  {  
+  if(result) {
+    
+  } 
+  else
+   {
+    reject(err);
+  }
+  });
+  }) as Promise<number>;
+  }
+
+
   public async stake(): Promise<number> {
     let meta=this;
     let account = await this.getAccount();

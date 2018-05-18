@@ -83,7 +83,7 @@
         
         <div class="modal-header" style="background: #1affff">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title" >Bet</h4>         
+          <h4 class="modal-title" >Increase</h4>         
         </div>
         
         <div class="modal-body" >
@@ -105,6 +105,63 @@
       </div>
     </div>
   </div>
+
+
+  
+  <!--Decrase BEt POPUP-->
+<div class="modal fade" id="decrease" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      
+      <div class="modal-header" style="background: #1affff">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" >Decrease</h4>         
+      </div>
+      
+      <div class="modal-body" >
+        <p>Decrease Bet Amount</p><br>
+        <select id="mychoice">
+          <option value="0">Ether</option>
+          <option value="1">Token</option>
+      </select><br><br>
+      <input type="text" class="shadow" placeholder="Enter bet id" id='bet_id'>
+        <br>
+      <input type="text" class="shadow" placeholder="Enter the amount" id='amt'>
+      
+    </div>
+     
+      <div class="modal-footer" >
+        <button type="button" class="success" data-dismiss="modal" aria-hidden="true" (click)="dec()">Decrease</button>
+        <button type="button" class="danger"  data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Exit BEt POPUP-->
+  <div class="modal fade" id="increase" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+        <div class="modal-header" style="background: #1affff">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Bet</h4>         
+        </div>
+        
+        <div class="modal-body" >
+          <p>Exit</p><br>
+          
+        <input type="text" class="shadow" placeholder="Enter bet id" id='bet_id'>        
+      </div>
+       
+        <div class="modal-footer" >
+          <button type="button" class="success" data-dismiss="modal" aria-hidden="true" (click)="exit()">Exit</button>
+          <button type="button" class="danger"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 <!--purchase popup--> 
 <div class="modal fade" id="purchase" role="dialog">
@@ -142,7 +199,7 @@
           </div>
          
           <div class="modal-footer">
-            <button type="button" class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="et()" style="background:#03A9F4" >Exchange</button>
+            <button type="button" class="butn zoom" data-dismiss="modal" aria-hidden="true" (click)="et()" style="background:#03A9F4">Exchange</button>
           
           </div>
         </div>

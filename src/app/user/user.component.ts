@@ -63,12 +63,36 @@ export class UserComponent implements OnInit {
       console.log(choice,bid);
       if(choice==0)
       {
-      // this.wcs.increase_ether(bid,choice,amt);
+      this.wcs.increase_ether(bid,choice,amt);
       }
       else if(choice==1)
       {
-        // this.wcs.increase_token(bid,choice,)
+        this.wcs.increase_token(bid,choice,amt)
       }
+
+    }
+
+    dec()
+    {
+      var choice:any = parseInt($( "#mychoice").val());
+      var bid:any = parseInt($('#bet_id').val());
+      var amt:any = parseInt($('#amt').val());
+      console.log(choice,bid);
+      if(choice==0)
+      {
+      this.wcs.decrease_ether(bid,choice,amt);
+      }
+      else if(choice==1)
+      {
+        this.wcs.decrease_token(bid,choice,amt)
+      }
+
+    }
+
+    exit()
+    {
+      var bid:any = parseInt($('#bet_id').val());
+      this.wcs.cancel_bet(bid);
 
     }
 
