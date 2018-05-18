@@ -18,18 +18,27 @@
 </head>
 <body style="background-color:rgb(240, 240, 240);" >
 <br>
-       <div class="container" style="background:white;height:120px;width:1200px;">
+       <div class="container" style="background:white;height:180px;width:1200px;">
           <nav class=" navbar container" ><br>
            <div>
                 
-             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
 
-                   <label for="account"><h4>Ether Balance:</h4><input type="text" class="form-control" id="balance" value={{balance}} readonly/></label>  &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                   <i class="fa fa-bitcoin" style="font-size:36px"></i>
-                   &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-                   <label for="account1"><h4>Token Balance:</h4><input type="text" class="form-control" id="usertoken"  readonly/></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                   <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#purchase" style="padding: 8px 30px" class="button1 zoom"  >Purchase Token</Button>&nbsp;&nbsp;&nbsp;&nbsp;
+
+                   <label for="account"><h4>Ether Balance:</h4><input type="text" class="form-control" id="balance" value={{balance}} readonly/></label> &nbsp;&nbsp;
+                   <!-- <i class="fa fa-bitcoin" style="font-size:36px"></i> -->
+                   <label for="account1"><h4>Token Balance:</h4><input type="text" class="form-control" id="usertoken"  readonly/></label>
+                   <br>             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+
+                   <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#purchase" style="padding: 8px 30px" class="button1 zoom" >Purchase Token</Button>
                    <Button type="button"  value="Create Bet" data-toggle="modal" data-target="#selltoken" style="padding: 8px 20px"class="button1 zoom" >Convert Token to Ether</Button>
+                   <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#betting" style="padding: 8px 30px" class="button1 zoom" >Bet</Button>
+                   <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#increase" style="padding: 8px 30px" class="button1 zoom" >Increase Bet</Button>
+                   <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#decrease" style="padding: 8px 30px" class="button1 zoom" >Decrease Bet</Button>
+                   <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#exit" style="padding: 8px 30px" class="button1 zoom" >Exit bet</Button>
+
+
+
          </div>   
 </nav>
 </div>
@@ -44,19 +53,58 @@
       </div>
       
       <div class="modal-body" >
-        <p>Bet by,</p><br>
-          <input type="radio" name="option" value="0"> Token<br>
-<input type="radio" name="option" value="1"> Ether<br><br>
-          <input type="text" class="shadow" placeholder="no.of.token or ether" id='bet_input'>
+        <p>Choose Token or Ether,</p><br>
+        <select id="myselect">
+          <option value="0">Ether</option>
+          <option value="1">Token</option>
+      </select><br><br>
+      <input type="text" class="shadow" placeholder="Enter game id" id='bet_id'>
+      <select id="mychoice">
+          <option value="0">Low</option>
+          <option value="1">High</option>
+      </select>
+      <input type="text" class="shadow" placeholder="Enter the Amount" id='bet_input'>
       </div>
      
       <div class="modal-footer" >
-        <button type="button" class="success" data-dismiss="modal" aria-hidden="true" (click)="bt()"  >Bet</button>
+        <button type="button" class="success" data-dismiss="modal" aria-hidden="true" (click)="bt()">Bet</button>
         <button type="button" class="danger"  data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
+
+
+<!--Increase BEt POPUP-->
+<div class="modal fade" id="increase" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+        <div class="modal-header" style="background: #1affff">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Bet</h4>         
+        </div>
+        
+        <div class="modal-body" >
+          <p>Increase Bet Amount</p><br>
+          <select id="mychoice">
+            <option value="0">Ether</option>
+            <option value="1">Token</option>
+        </select><br><br>
+        <input type="text" class="shadow" placeholder="Enter bet id" id='bet_id'>
+          <br>
+        <input type="text" class="shadow" placeholder="Enter the amount" id='amt'>
+        
+      </div>
+       
+        <div class="modal-footer" >
+          <button type="button" class="success" data-dismiss="modal" aria-hidden="true" (click)="inc()">Increase</button>
+          <button type="button" class="danger"  data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!--purchase popup--> 
 <div class="modal fade" id="purchase" role="dialog">
@@ -107,10 +155,10 @@
      <thead>
        <tr style="background:white">
          <th>Bet Id</th>
-         <th>Details</th>
-         <th>Team</th>
-         <th>Start Time/Date</th>
-         <th>End Time/Date</th>
+         <th>Stock Name</th>
+         <th>Strike Price</th>
+         <th>Expiry time</th>
+         <th></th>
          <th>Win</th>
          <th>Loss</th>
          <th> </th>
@@ -149,7 +197,12 @@
        </tr>
      </tbody>
    </table>
+
  </div>
+
+
+ 
+ 
  <br>
 </body>
 </html>

@@ -54,7 +54,7 @@
 <body style="background-color:rgb(240, 240, 240);">
 <br>
 <div>
-    <div class="container" style="background:white;height:120px;width:1000px;">
+    <div class="container" style="background:white;height:160px;width:1000px;">
     <nav class=" navbar container" ><br>
      <div>
              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
@@ -62,13 +62,19 @@
              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
              &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-             <i class="fa fa-bitcoin" style="font-size:36px"></i>
-             <div class="lds-hourglass">
-          <p>sdjkfhsdfjkohsdkjfh</p>
+             <!-- <!-- <i class="fa fa-bitcoin" style="font-size:36px"></i> -->
+             <div >
+         
              </div>
-             <label for="account"><h4>Contract's Ether Balance:</h4><input type="text" class="form-control" id="balance1" readonly/></label>             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;            
-             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-             <label for="account1"><h4>Contract's Token Balance:</h4><input type="text" class="form-control" id="brokertoken" readonly/></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <!-- <label for="account"><h4>Contract's Ether Balance:</h4><input type="text" class="form-control" id="balance1" readonly/></label>             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;            
+             &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+             <label for="account1"><h4>Contract's Token Balance:</h4><input type="text" class="form-control" id="brokertoken" readonly/></label>  &nbsp;&nbsp;&nbsp; &nbsp;      -->
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+             <Button type="button"  value="Create Bet" data-toggle="modal"  data-target="#betting" style="padding: 8px 30px" class="button1 zoom" >Finalize</Button>
+             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <br>
 
      </div>   
@@ -77,29 +83,74 @@
 </div>
 <br>  
 <div id="div1" class="fa"></div>
-
-  <div class="modal fade" id="purchase" role="dialog">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content">
-          
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Add a Tokens</h4>         
-          </div>
-          
-          <div class="modal-body">
-              <input type="text" placeholder="number only" id='num'>
-          </div>
-         
-          <div class="modal-footer">
-            <button type="button"class="butn" data-dismiss="modal" aria-hidden="true" onclick="App.buy_token();" style="background:#03A9F4" >Purchase</button>
-          </div>
+<div class="modal fade" id="betting" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+        <div class="modal-header" style="background: #1affff">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Result</h4>         
+        </div>
+        
+        <div class="modal-body" >
+          <p >Finalize the Result of a Bet</p><br>
+        
+          <!-- <select id="myselect">
+            <option value="0">Ether</option>
+            <option value="1">Token</option>
+        </select> -->
+        <br><br>
+        <input type="text" class="shadow" placeholder="Enter game id" id='bet_id'>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <select id="result">
+            <option value="10">Low</option>
+            <option value="11">High</option>
+            <option value="12">Draw</option>
+        </select>
+        <br>
+        <br>
+        </div>
+       
+        <div class="modal-footer" >
+          <button type="button" class="success" data-dismiss="modal" aria-hidden="true" (click)="result()">Finalize</button>
+          <button type="button" class="danger"  data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
- <br> 
+  </div>
+
+
  <script>
     
     </script>
+
+    <!--Betted table-->
+<div class="container" style="height:500px;width:1230px;">
+    <table class="table" style="background:white;overflow-y:scroll;display:block;" >
+     <thead>
+       <tr style="background:white">
+        <th>Bet Id</th>
+        <th>Stock Name</th>
+        <th>Strike Price</th>
+        <th>Expiry Time</th>
+        <th>No.of.Bets</th>
+        <th>Ether Collected</th>
+        <th>Tokens Collected</th> 
+        <th>Bet Status</th>  
+         <th> </th>
+         <th> </th>
+         <th> </th>
+       </tr>
+     </thead>
+     <tbody id="total_bet_list">
+         <tr>
+       
+       </tr>
+     </tbody>
+   </table>
+
+ </div>
+<br>
+
 </body>
 </html> 

@@ -3,9 +3,9 @@
     background-color: blue;
     height: 100%; 
 }
-.navbar-brand {
+/* .navbar-brand {
   padding: 0px;
-}
+} */
 .navbar-brand>img {
   height: 100%;
   padding: 3px;
@@ -129,6 +129,15 @@ input{
     cursor: pointer;
     font-size: 18px;
 }
+.zoom:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+}
+button1:hover{
+    cursor: pointer;
+
+    }
 .navbar-default .navbar-nav > .active > a, 
   .navbar-default .navbar-nav > .active > a:hover, 
   .navbar-default .navbar-nav > .active > a:focus {

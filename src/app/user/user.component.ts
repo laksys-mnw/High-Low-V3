@@ -32,26 +32,47 @@ export class UserComponent implements OnInit {
       var n:any = $('#num').val();
       var not = n/1000;
       this.wcs.exchange_token(not);
-    } 
-    bt(a)
+    }     
+    bt()
     {
-      alert();
-      var opt:any = $('#option').val();
-      var amt:any = $('#bet_input').val();
+      
+      var opt:any = parseInt($( "#myselect").val());
+      var id:any = parseInt($('#bet_id').val());
+      var chc:any = parseInt($( "#mychoice").val());      
+      var amt:any = parseInt($('#bet_input').val());
 
-      console.log(opt,amt);
+      console.log(opt,id,chc,amt);
       
       if(opt==0)
       {
-        this.wcs.bet_ether(a,opt,amt);
+         this.wcs.bet_ether(id,chc,amt);
 
       }
       else if(opt==1)
       {
-        this.wcs.bet_token(a,opt,amt);
+         this.wcs.bet_token(id,chc,amt);
 
       }
     }
+
+    inc()
+    {
+      var choice:any = parseInt($( "#mychoice").val());
+      var bid:any = parseInt($('#bet_id').val());
+      var amt:any = parseInt($('#amt').val());
+      console.log(choice,bid);
+      if(choice==0)
+      {
+      this.wcs.increase_ether(bid,choice,amt);
+      }
+      else if(choice==1)
+      {
+        this.wcs.increase_token(bid,choice,)
+      }
+
+    }
+
+
   ngOnInit() 
   {  
   }
