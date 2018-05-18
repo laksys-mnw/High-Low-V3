@@ -63,11 +63,11 @@ export class UserComponent implements OnInit {
       console.log(choice,bid);
       if(choice==0)
       {
-      this.wcs.increase_ether(bid,choice,amt);
+      // this.wcs.increase_ether(bid,choice,amt);
       }
       else if(choice==1)
       {
-        this.wcs.increase_token(bid,choice,)
+        // this.wcs.increase_token(bid,choice,)
       }
 
     }

@@ -117,13 +117,13 @@ public _tokenContractAddress: string = "0xc18cb67daef73e39d7436a90a8a42e775f76a8
 
   
   public async stake(): Promise<number> {
+    let meta=this;
     let account = await this.getAccount();
   
     return new Promise((resolve, reject) => {
       
-      this._tokenContract.broker_map.call(account, function (err, result) {
-        alert("Staked_ether"+result[0]);
-        resolve(result);
+      meta._tokenContract.broker_map.call(account, function (err, result) {
+        resolve(meta._web3.fromWei(result[0],'ether'));
 
       });
 
@@ -139,7 +139,6 @@ public _tokenContractAddress: string = "0xc18cb67daef73e39d7436a90a8a42e775f76a8
         if(err != null) {
           reject(err);
         }
-        alert("Staked_Token"+result[1]);
 
         resolve(result);
       });

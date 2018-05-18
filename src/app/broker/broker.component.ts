@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Web3codeService } from '../services/web3code.service';
+import * as Web3 from 'web3';
+
 import $ from "jquery";
 
 @Component({
@@ -18,8 +20,8 @@ export class BrokerComponent implements OnInit {
      {
       wcs.getAccount().then(account => this.account = account);
       wcs.getAccount().then(account => wcs.particular_brokers_bet_list(account));
-      wcs.stake();
-      wcs.Token();
+      wcs.stake().then(ether =>$('#ether_bal').val(ether));
+      wcs.Token().then(token =>$('#token_bal').val(token[1]));
      }
   cb()
   {
